@@ -8,7 +8,7 @@ namespace Medfar.Interview.DAL.Repositories
 {
     public class UserRepository
     {
-        private static string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MEDFARINTERVIEW;Integrated Security=True";
+        private static string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MEDFAR_DEV_INTERVIEW;Integrated Security=True";
         private static SqlConnection _dbConnection;
 
         public UserRepository()
