@@ -5,6 +5,22 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
 <div>
-   <span> Here is where your work goes! </span>
+    @using (Html.BeginForm("AddUser", "Exam", FormMethod.Post, new { id = "Form Name" }))
+    {
+
+        @Html.Label("First Name")
+        @Html.TextBox("first_name", null, new { @class = "form-control" })
+        @Html.Label("Last Name")
+        @Html.TextBox("last_name", null, new { @class = "form-control" })
+        @Html.Label("Email")
+        @Html.TextBox("email", null, new { @class = "form-control" })
+        <div>
+        <input type="submit" value="Add new User" />
+        </div>
+    }
+
+
+
 </div>

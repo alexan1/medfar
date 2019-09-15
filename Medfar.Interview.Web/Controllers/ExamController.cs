@@ -12,5 +12,11 @@ namespace Medfar.Interview.Web.Controllers
         {
             return View();
         }
+        
+        public ActionResult AddUser(User)
+        {
+            return View();
+        }
+
     }
 }
