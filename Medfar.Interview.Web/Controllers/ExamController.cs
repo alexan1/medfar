@@ -34,8 +34,8 @@ namespace Medfar.Interview.Web.Controllers
                 Date_created = DateTime.Now
             };            
 
-            userRep.Insert(user);
-            return View("Example/Index");
+            userRep.Insert(user);            
+            return RedirectToAction("Index");
             
         }
 
