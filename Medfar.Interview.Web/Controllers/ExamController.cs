@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Medfar.Interview.DAL.Repositories;
+using Medfar.Interview.Types;
 
 namespace Medfar.Interview.Web.Controllers
 {
@@ -13,9 +15,28 @@ namespace Medfar.Interview.Web.Controllers
             return View();
         }
         
-        public ActionResult AddUser(User)
+        public ActionResult AddUser(string firstName, string lastName, string email)
         {
-            return View();
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            UserRepository userRep = new UserRepository();
+
+            var user = new User()
+            {
+                id = Guid.NewGuid(),
+                first_name = firstName,
+                last_name = lastName,
+                email = email,
+                date_created = DateTime.Now
+            };            
+
+            userRep.Insert(user);
+            return View("Example/Index");
+            
         }
 
     }

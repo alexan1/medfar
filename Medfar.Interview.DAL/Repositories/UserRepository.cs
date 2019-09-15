@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Reflection;
 
 namespace Medfar.Interview.DAL.Repositories
 {
@@ -25,16 +24,16 @@ namespace Medfar.Interview.DAL.Repositories
             SqlDataReader reader = command.ExecuteReader();
 
             List<User> messages = new List<User>();
-            User obj = default(User);
             while (reader.Read())
             {
-                User message = new User();
-
-                message.id = (Guid)reader["id"];
-                message.last_name = (string)reader["last_name"];
-                message.first_name = (string)reader["first_name"];
-                message.email = (string)reader["email"];
-                message.date_created = (DateTime)reader["date_created"];
+                User message = new User
+                {
+                    id = (Guid)reader["id"],
+                    last_name = (string)reader["last_name"],
+                    first_name = (string)reader["first_name"],
+                    email = (string)reader["email"],
+                    date_created = (DateTime)reader["date_created"]
+                };
 
                 messages.Add(message);
             }
@@ -54,16 +53,16 @@ namespace Medfar.Interview.DAL.Repositories
             SqlDataReader reader = command.ExecuteReader();
 
             List<User> messages = new List<User>();
-            User obj = default(User);
             while (reader.Read())
             {
-                User message = new User();
-
-                message.id = (Guid)reader["id"];
-                message.last_name = (string)reader["last_name"];
-                message.first_name = (string)reader["first_name"];
-                message.email = (string)reader["email"];
-                message.date_created = (DateTime)reader["date_created"];
+                User message = new User
+                {
+                    id = (Guid)reader["id"],
+                    last_name = (string)reader["last_name"],
+                    first_name = (string)reader["first_name"],
+                    email = (string)reader["email"],
+                    date_created = (DateTime)reader["date_created"]
+                };
 
                 messages.Add(message);
             }
@@ -78,13 +77,14 @@ namespace Medfar.Interview.DAL.Repositories
                               " Users " +
                               "values ('" + u.id + "', '" + u.last_name + "', '" + u.first_name + "', '" + u.email + "', '" + u.date_created + "')";
 
-            SqlCommand command = new SqlCommand(sqlQuery, _dbConnection);
+            using (SqlCommand command = new SqlCommand(sqlQuery, _dbConnection))
+            {
+                _dbConnection.Open();
 
-            _dbConnection.Open();
+                int nbresult = command.ExecuteNonQuery();
 
-            int nbresult = command.ExecuteNonQuery();
-
-            return nbresult;
+                return nbresult;
+            }
         }
 
         public int Update(User u)
