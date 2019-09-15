@@ -27,11 +27,11 @@ namespace Medfar.Interview.Web.Controllers
 
             var user = new User()
             {
-                id = Guid.NewGuid(),
-                first_name = firstName,
-                last_name = lastName,
-                email = email,
-                date_created = DateTime.Now
+                Id = Guid.NewGuid(),
+                First_name = firstName,
+                Last_name = lastName,
+                Email = email,
+                Date_created = DateTime.Now
             };            
 
             userRep.Insert(user);

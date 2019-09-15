@@ -4,11 +4,11 @@ namespace Medfar.Interview.Types
 {
     public class User
     {
-        public Guid id { get; set; }
-        public string first_name{ get; set; }
-        public string last_name { get; set; }
-        public string email { get; set; }
-        public DateTime date_created{ get; set; }
+        public Guid Id { get; set; }
+        public string First_name{ get; set; }
+        public string Last_name { get; set; }
+        public string Email { get; set; }
+        public DateTime Date_created{ get; set; }
 
     }
 }

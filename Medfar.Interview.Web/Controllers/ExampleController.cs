@@ -17,11 +17,11 @@ namespace Medfar.Interview.Web.Controllers
 
             User user = new User
             {
-                id = Guid.NewGuid(),
-                first_name = "Joe",
-                last_name = "Medfar",
-                email = "joemedfar@medfarsolutions.com",
-                date_created = DateTime.Now
+                Id = Guid.NewGuid(),
+                First_name = "Joe",
+                Last_name = "Medfar",
+                Email = "joemedfar@medfarsolutions.com",
+                Date_created = DateTime.Now
             };
             model.Users.Add(user);
 
