@@ -14,13 +14,14 @@ namespace Medfar.Interview.Web.Controllers
         {
             return View();
         }
-        
-        public ActionResult AddUser(string firstName, string lastName, string email)
+
+        [HttpPost]
+        public ActionResult AddUser(User model)
         {
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("Index");
             }
 
             UserRepository userRep = new UserRepository();
@@ -28,14 +29,14 @@ namespace Medfar.Interview.Web.Controllers
             var user = new User()
             {
                 Id = Guid.NewGuid(),
-                First_name = firstName,
-                Last_name = lastName,
-                Email = email,
+                First_name = model.First_name,
+                Last_name = model.Last_name,
+                Email = model.Email,
                 Date_created = DateTime.Now
             };            
 
             userRep.Insert(user);            
-            return RedirectToAction("Index");
+            return RedirectToAction("LoadData", "Example");
             
         }
 

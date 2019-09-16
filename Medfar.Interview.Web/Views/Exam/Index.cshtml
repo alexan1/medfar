@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Medfar.Interview.Types.User
+@{
     ViewBag.Title = "Exam";
 }
 
@@ -10,14 +11,17 @@
     @using (Html.BeginForm("AddUser", "Exam", FormMethod.Post, new { id = "AddUser" }))
     {
 
-        @Html.Label("First Name")
-        @Html.TextBox("firstName", null, new { @class = "form-control" })
-        @Html.Label("Last Name")
-        @Html.TextBox("lastName", null, new { @class = "form-control" })
-        @Html.Label("Email")
-        @Html.TextBox("email", null, new { @class = "form-control" })
+        @Html.LabelFor(x => x.First_name, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.First_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.First_name, "", new { @class = "text-danger" })
+        @Html.LabelFor(x => x.Last_name, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Last_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Last_name, "", new { @class = "text-danger" })
+        @Html.LabelFor(x => x.Email, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
         <div>
-        <input type="submit" value="Add new User" />
+            <input type="submit" value="Add new User" />
         </div>
     }
 
