@@ -15,12 +15,14 @@ namespace Medfar.Interview.Web.Controllers
         {
             ExampleViewModel model = new ExampleViewModel();
 
-            User user = new User();
-            user.id = Guid.NewGuid();
-            user.first_name = "Joe";
-            user.last_name = "Medfar";
-            user.email = "joemedfar@medfarsolutions.com";
-            user.date_created = DateTime.Now;
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                First_name = "Joe",
+                Last_name = "Medfar",
+                Email = "joemedfar@medfarsolutions.com",
+                Date_created = DateTime.Now
+            };
             model.Users.Add(user);
 
             return View(model);

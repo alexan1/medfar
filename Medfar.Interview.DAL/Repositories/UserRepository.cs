@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Reflection;
 
 namespace Medfar.Interview.DAL.Repositories
 {
     public class UserRepository
     {
-        private static string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MEDFARINTERVIEW;Integrated Security=True";
+        private static string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MEDFAR_DEV_INTERVIEW;Integrated Security=True";
         private static SqlConnection _dbConnection;
 
         public UserRepository()
@@ -25,16 +24,16 @@ namespace Medfar.Interview.DAL.Repositories
             SqlDataReader reader = command.ExecuteReader();
 
             List<User> messages = new List<User>();
-            User obj = default(User);
             while (reader.Read())
             {
-                User message = new User();
-
-                message.id = (Guid)reader["id"];
-                message.last_name = (string)reader["last_name"];
-                message.first_name = (string)reader["first_name"];
-                message.email = (string)reader["email"];
-                message.date_created = (DateTime)reader["date_created"];
+                User message = new User
+                {
+                    Id = (Guid)reader["id"],
+                    Last_name = (string)reader["last_name"],
+                    First_name = (string)reader["first_name"],
+                    Email = (string)reader["email"],
+                    Date_created = (DateTime)reader["date_created"]
+                };
 
                 messages.Add(message);
             }
@@ -54,16 +53,16 @@ namespace Medfar.Interview.DAL.Repositories
             SqlDataReader reader = command.ExecuteReader();
 
             List<User> messages = new List<User>();
-            User obj = default(User);
             while (reader.Read())
             {
-                User message = new User();
-
-                message.id = (Guid)reader["id"];
-                message.last_name = (string)reader["last_name"];
-                message.first_name = (string)reader["first_name"];
-                message.email = (string)reader["email"];
-                message.date_created = (DateTime)reader["date_created"];
+                User message = new User
+                {
+                    Id = (Guid)reader["id"],
+                    Last_name = (string)reader["last_name"],
+                    First_name = (string)reader["first_name"],
+                    Email = (string)reader["email"],
+                    Date_created = (DateTime)reader["date_created"]
+                };
 
                 messages.Add(message);
             }
@@ -76,15 +75,16 @@ namespace Medfar.Interview.DAL.Repositories
 
             string sqlQuery = @"INSERT INTO" +
                               " Users " +
-                              "values ('" + u.id + "', '" + u.last_name + "', '" + u.first_name + "', '" + u.email + "', '" + u.date_created + "')";
+                              "values ('" + u.Id + "', '" + u.Last_name + "', '" + u.First_name + "', '" + u.Email + "', '" + u.Date_created + "')";
 
-            SqlCommand command = new SqlCommand(sqlQuery, _dbConnection);
+            using (SqlCommand command = new SqlCommand(sqlQuery, _dbConnection))
+            {
+                _dbConnection.Open();
 
-            _dbConnection.Open();
+                int nbresult = command.ExecuteNonQuery();
 
-            int nbresult = command.ExecuteNonQuery();
-
-            return nbresult;
+                return nbresult;
+            }
         }
 
         public int Update(User u)
@@ -93,8 +93,8 @@ namespace Medfar.Interview.DAL.Repositories
 
             string sqlQuery = @"UPDATE   " +
                               " Users" +
-                              " SET last_name='" + u.last_name + "', first_name='" + u.first_name + "', email='" + u.email + "', date_created='" + u.date_created + "' " +
-                              "WHERE id= '" + u.id + "'";
+                              " SET last_name='" + u.Last_name + "', first_name='" + u.First_name + "', email='" + u.Email + "', date_created='" + u.Date_created + "' " +
+                              "WHERE id= '" + u.Id + "'";
 
             SqlCommand command = new SqlCommand(sqlQuery, _dbConnection);
             _dbConnection.Open();
@@ -110,7 +110,7 @@ namespace Medfar.Interview.DAL.Repositories
 
             string sqlQuery = @"DELETE FROM  " +
                                  " Users " +
-                                 " WHERE id= '" + u.id + "'";
+                                 " WHERE id= '" + u.Id + "'";
 
             SqlCommand command = new SqlCommand(sqlQuery, _dbConnection);
 

@@ -31,3 +31,10 @@ _ReSharper*/
 .vs/config/applicationhost.config
 [Pa]ckages*/
 /MVC/packages/
+/.vs/MEDFAR.Test.Web/v16/Server/sqlite3
+/packages/Antlr.3.4.1.9004
+/packages/bootstrap.3.0.0
+/packages/EntityFramework.6.1.3
+/packages/jQuery.1.10.2
+/packages
+/.vs/MEDFAR.Test.Web/config
