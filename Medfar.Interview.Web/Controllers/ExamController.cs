@@ -36,7 +36,7 @@ namespace Medfar.Interview.Web.Controllers
             };            
 
             userRep.Insert(user);            
-            return RedirectToAction("LoadData", "Example");
+            return RedirectToAction("Index", "Example");
             
         }
 
